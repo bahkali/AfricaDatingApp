@@ -1,7 +1,5 @@
 # Dating App Using .NET Microservices
 
-<hr>
-
 ## Overview
 
 Building a African origin Dating application for African diaspora. A user will meet partner from the same country origin.
