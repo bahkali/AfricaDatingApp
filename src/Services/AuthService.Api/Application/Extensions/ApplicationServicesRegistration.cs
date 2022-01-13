@@ -1,4 +1,5 @@
-﻿using AuthService.Api.Domain;
+﻿using AuthService.Api.Application.Services.SyncDataServices.Http;
+using AuthService.Api.Domain;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -15,6 +16,7 @@ namespace AuthService.Api.Application.Extensions
             {
                 opt.UseSqlite(config.GetConnectionString("DefaultConnection"));
             });
+            services.AddHttpClient<IUserDataClient, HttpUserDataClient>();
             services.ConfigureIdentityServices(config);
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddMediatR(Assembly.GetExecutingAssembly());

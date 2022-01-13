@@ -8,12 +8,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
+using AuthService.Api.Application.Services.SyncDataServices.Http;
+using AuthService.Api.Application.Dtos;
+using System;
 
 namespace AuthService.Api.Controllers
 {
     public class AuthManagementController : BaseApiController
     {
-        
+        private readonly IUserDataClient _userDataClient;
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly TokenService _tokenService;
@@ -21,9 +24,10 @@ namespace AuthService.Api.Controllers
         public AuthManagementController(
             UserManager<AppUser> userManager,
             SignInManager<AppUser> signInManager,
+            IUserDataClient userDataClient,
             TokenService tokenService)
         {
-            
+            _userDataClient = userDataClient;
             _userManager = userManager;
             _signInManager = signInManager;
             _tokenService = tokenService;
@@ -54,6 +58,17 @@ namespace AuthService.Api.Controllers
 
             // generate token using the tokenservice 
             var jwtToken = await _tokenService.CreateToken(newUser);
+
+            //Pass the user information to Profile EndPoint
+            try
+            {
+                 var userData = new UserSendDto() {Id = newUser.Id, Email = newUser.Email, UserName = newUser.UserName};
+                 await _userDataClient.SendUserToProfile(userData);
+            }
+            catch (Exception ex)
+            {
+               Console.WriteLine($"Could not send synchronously: {ex.Message}");
+            }
 
             return Ok(jwtToken);
         }

@@ -1,7 +1,6 @@
-namespace ProfileService.Api.Domain.Entities
+namespace AuthService.Api.Application.Dtos
 {
-    // This a Copy of User Information from Authentication service
-    public class AppUser
+    public class UserSendDto
     {
         public string Id { get; set; }
         public string UserName { get; set; }
