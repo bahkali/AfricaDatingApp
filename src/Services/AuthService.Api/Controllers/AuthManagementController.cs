@@ -62,14 +62,13 @@ namespace AuthService.Api.Controllers
             //Pass the user information to Profile EndPoint
             try
             {
-                 var userData = new UserSendDto() {Id = newUser.Id, Email = newUser.Email, UserName = newUser.UserName};
+                 var userData = new UserSendDto() {Id = newUser.Id, Username = newUser.UserName ,Email = newUser.Email};
                  await _userDataClient.SendUserToProfile(userData);
             }
             catch (Exception ex)
             {
                Console.WriteLine($"Could not send synchronously: {ex.Message}");
             }
-
             return Ok(jwtToken);
         }
 
