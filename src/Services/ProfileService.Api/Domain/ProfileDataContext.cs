@@ -8,8 +8,11 @@ namespace ProfileService.Api.Domain
         public ProfileDataContext(DbContextOptions options) : base(options)
         {}
         public DbSet<Photo> Photos { get; set; }
-
-        public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<ProfileUser> ProfileUsers { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+        }
     }
 }

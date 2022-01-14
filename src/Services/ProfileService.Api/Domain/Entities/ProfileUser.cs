@@ -5,7 +5,7 @@ namespace ProfileService.Api.Domain.Entities
 {
     public class ProfileUser
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public string Username { get; set; }
         public string DisplayName { get; set; }
