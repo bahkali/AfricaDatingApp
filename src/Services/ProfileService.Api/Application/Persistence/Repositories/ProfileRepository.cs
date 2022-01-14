@@ -1,5 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using ProfileService.Api.Application.Dtos;
 using ProfileService.Api.Application.Persistence.Repositories.Interface;
 using ProfileService.Api.Domain;
 using ProfileService.Api.Domain.Entities;
@@ -9,32 +12,45 @@ namespace ProfileService.Api.Application.Persistence.Repositories
     public class ProfileRepository : IProfileRepository
     {
         private readonly ProfileDataContext _context;
-
         public ProfileRepository(ProfileDataContext context)
         {
             _context = context;
         }
-        public Task createProfile(AppUser user)
+
+        public void createProfileAsync(ProfileUser user)
         {
-            throw new System.NotImplementedException();
+            _context.ProfileUsers.Add(user);
         }
 
-        public Task<bool> DeleteProfile(string id)
+        public async void DeleteProfile(string id)
         {
-            throw new System.NotImplementedException();
+            var profile = await GetProfileByIdAsync(id);
+             _context.ProfileUsers.Remove(profile) ;
         }
 
-        public Task<ProfileUser> GetProfile(string id)
+        public async Task<ProfileUser> GetProfileByIdAsync(string id)
         {
-            throw new System.NotImplementedException();
+            return await _context.ProfileUsers.FindAsync(id);
         }
 
-        public Task<IEnumerable<ProfileUser>> GetProfiles()
+        public async Task<ProfileUser> GetProfileByUsername(string username)
         {
-            throw new System.NotImplementedException();
+            return await _context.ProfileUsers
+             .Include(p => p.Photos)
+            .SingleOrDefaultAsync(x => x.Username == username);
         }
 
-        public Task<bool> UpdateProfile(ProfileUser profile)
+        public async Task<IEnumerable<ProfileUser>> GetProfilesAsync()
+        {
+            return await _context.ProfileUsers.Include(p => p.Photos).ToListAsync();
+        }
+
+        public async Task<bool> SaveAllAsync()
+        {
+            return await _context.SaveChangesAsync() > 0;
+        }
+
+        public void UpdateProfile(ProfileUser profile)
         {
             throw new System.NotImplementedException();
         }
