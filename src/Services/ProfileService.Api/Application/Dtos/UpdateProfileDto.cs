@@ -4,6 +4,7 @@ namespace ProfileService.Api.Application.Dtos
 {
     public class UpdateProfileDto
     {
+        public string Id { get; set; }
         public string Name { get; set; }
         public string DisplayName { get; set; }
         public string Gender { get; set; }

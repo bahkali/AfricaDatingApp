@@ -34,6 +34,15 @@ namespace ProfileService.Api.Controllers
             return Ok(await _context.SaveChangesAsync() > 0);
         }
 
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateProfile(string id, [FromBody] UpdateProfileDto profile)
+        {
+            var existingProfile = await _context.ProfileUsers.FindAsync(id);
+            if(existingProfile == null) return BadRequest("");
+            _mapper.Map(profile, existingProfile);
+            return Ok(await _context.SaveChangesAsync() > 0);
+        }
+
         [HttpPost]
         public ActionResult TestInboundConnection(CreateProfileDto user)
         {
