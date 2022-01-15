@@ -2,12 +2,113 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>2e6f1cee-a2cb-440d-905c-b61268ee65d6</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>.</DockerfileContext>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="obj\Debug\net5.0\.NETCoreApp,Version=v5.0.AssemblyAttributes.cs" />
+    <Compile Include="obj\Debug\net5.0\AuthService.Api.AssemblyInfo.cs" />
+    <Compile Include="obj\Debug\net5.0\AuthService.Api.MvcApplicationPartsAssemblyInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="bin\Debug\net5.0\appsettings.Development.json" />
+    <Content Include="bin\Debug\net5.0\appsettings.json" />
+    <Content Include="bin\Debug\net5.0\appsettings.Production.json" />
+    <Content Include="bin\Debug\net5.0\AuthService.Api.deps.json" />
+    <Content Include="bin\Debug\net5.0\AuthService.Api.runtimeconfig.dev.json" />
+    <Content Include="bin\Debug\net5.0\AuthService.Api.runtimeconfig.json" />
+    <Content Include="obj\AuthService.Api.csproj.nuget.dgspec.json" />
+    <Content Include="obj\Debug\net5.0\AuthService.Api.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\net5.0\project.razor.json" />
+    <Content Include="obj\project.assets.json" />
+  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Application\Dtos\Interface\" />
     <Folder Include="Application\Persistence\" />
     <Folder Include="Domain\Common\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="AuthService.Api.sln" />
+    <None Include="bin\Debug\net5.0\AuthService.Api.dll" />
+    <None Include="bin\Debug\net5.0\AuthService.Api.exe" />
+    <None Include="bin\Debug\net5.0\AuthService.Api.pdb" />
+    <None Include="bin\Debug\net5.0\AutoMapper.dll" />
+    <None Include="bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll" />
+    <None Include="bin\Debug\net5.0\Humanizer.dll" />
+    <None Include="bin\Debug\net5.0\MediatR.Contracts.dll" />
+    <None Include="bin\Debug\net5.0\MediatR.dll" />
+    <None Include="bin\Debug\net5.0\MediatR.Extensions.Microsoft.DependencyInjection.dll" />
+    <None Include="bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll" />
+    <None Include="bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll" />
+    <None Include="bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll" />
+    <None Include="bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll" />
+    <None Include="bin\Debug\net5.0\Microsoft.Data.Sqlite.dll" />
+    <None Include="bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll" />
+    <None Include="bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll" />
+    <None Include="bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll" />
+    <None Include="bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll" />
+    <None Include="bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll" />
+    <None Include="bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Sqlite.dll" />
+    <None Include="bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
+    <None Include="bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll" />
+    <None Include="bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll" />
+    <None Include="bin\Debug\net5.0\Microsoft.Extensions.Identity.Core.dll" />
+    <None Include="bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll" />
+    <None Include="bin\Debug\net5.0\Microsoft.Extensions.Options.dll" />
+    <None Include="bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll" />
+    <None Include="bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll" />
+    <None Include="bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll" />
+    <None Include="bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll" />
+    <None Include="bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll" />
+    <None Include="bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll" />
+    <None Include="bin\Debug\net5.0\Microsoft.OpenApi.dll" />
+    <None Include="bin\Debug\net5.0\ref\AuthService.Api.dll" />
+    <None Include="bin\Debug\net5.0\runtimes\alpine-x64\native\libe_sqlite3.so" />
+    <None Include="bin\Debug\net5.0\runtimes\linux-arm64\native\libe_sqlite3.so" />
+    <None Include="bin\Debug\net5.0\runtimes\linux-armel\native\libe_sqlite3.so" />
+    <None Include="bin\Debug\net5.0\runtimes\linux-arm\native\libe_sqlite3.so" />
+    <None Include="bin\Debug\net5.0\runtimes\linux-mips64\native\libe_sqlite3.so" />
+    <None Include="bin\Debug\net5.0\runtimes\linux-musl-x64\native\libe_sqlite3.so" />
+    <None Include="bin\Debug\net5.0\runtimes\linux-x64\native\libe_sqlite3.so" />
+    <None Include="bin\Debug\net5.0\runtimes\linux-x86\native\libe_sqlite3.so" />
+    <None Include="bin\Debug\net5.0\runtimes\osx-x64\native\libe_sqlite3.dylib" />
+    <None Include="bin\Debug\net5.0\runtimes\win-arm64\native\e_sqlite3.dll" />
+    <None Include="bin\Debug\net5.0\runtimes\win-arm\native\e_sqlite3.dll" />
+    <None Include="bin\Debug\net5.0\runtimes\win-x64\native\e_sqlite3.dll" />
+    <None Include="bin\Debug\net5.0\runtimes\win-x86\native\e_sqlite3.dll" />
+    <None Include="bin\Debug\net5.0\SQLitePCLRaw.batteries_v2.dll" />
+    <None Include="bin\Debug\net5.0\SQLitePCLRaw.core.dll" />
+    <None Include="bin\Debug\net5.0\SQLitePCLRaw.nativelibrary.dll" />
+    <None Include="bin\Debug\net5.0\SQLitePCLRaw.provider.dynamic_cdecl.dll" />
+    <None Include="bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll" />
+    <None Include="bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll" />
+    <None Include="bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll" />
+    <None Include="bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll" />
+    <None Include="bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll" />
+    <None Include="bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll" />
+    <None Include="obj\AuthService.Api.csproj.EntityFrameworkCore.targets" />
+    <None Include="obj\AuthService.Api.csproj.nuget.g.props" />
+    <None Include="obj\AuthService.Api.csproj.nuget.g.targets" />
+    <None Include="obj\Debug\net5.0\apphost.exe" />
+    <None Include="obj\Debug\net5.0\AuthService.Api.AssemblyInfoInputs.cache" />
+    <None Include="obj\Debug\net5.0\AuthService.Api.assets.cache" />
+    <None Include="obj\Debug\net5.0\AuthService.Api.csproj.AssemblyReference.cache" />
+    <None Include="obj\Debug\net5.0\AuthService.Api.csproj.CopyComplete" />
+    <None Include="obj\Debug\net5.0\AuthService.Api.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\net5.0\AuthService.Api.dll" />
+    <None Include="obj\Debug\net5.0\AuthService.Api.GeneratedMSBuildEditorConfig.editorconfig" />
+    <None Include="obj\Debug\net5.0\AuthService.Api.genruntimeconfig.cache" />
+    <None Include="obj\Debug\net5.0\AuthService.Api.MvcApplicationPartsAssemblyInfo.cache" />
+    <None Include="obj\Debug\net5.0\AuthService.Api.pdb" />
+    <None Include="obj\Debug\net5.0\AuthService.Api.RazorTargetAssemblyInfo.cache" />
+    <None Include="obj\Debug\net5.0\ref\AuthService.Api.dll" />
+    <None Include="obj\Debug\net5.0\staticwebassets\AuthService.Api.StaticWebAssets.Manifest.cache" />
+    <None Include="obj\project.nuget.cache" />
   </ItemGroup>
 
   <ItemGroup>

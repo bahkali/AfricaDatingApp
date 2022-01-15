@@ -9,14 +9,14 @@ this project include
 
 - REST API CRUD
 - Repository Pattern
-- Cloudinary
+- Cloudinary to Store our photo
 - Entity Framework
 - Sqlite Db
 - Docker
 
 ## Main User Case
 
-- Get Profile with user id
+- Get Profile with user id and Username
 - Create Profile
 - Update Profile
 - Add Photo
