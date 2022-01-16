@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  authservice.api:
+    container_name: authservice.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ProfileServiceEndPoint=http://profileservice.api/api/v1/profile/createProfile"
+    ports:
+      - "8000:80"
+      - "443"
+
+  profileservice.api:
+    container_name: profileservice.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8001:80"
+      - "443"

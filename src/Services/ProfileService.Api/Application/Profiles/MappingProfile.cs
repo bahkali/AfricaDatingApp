@@ -15,7 +15,7 @@ namespace ProfileService.Api.Application.Profiles
             .ForMember(dest => dest.Age, opt => opt.MapFrom(src => src.DateOfBirth.CalculateAge()))
             .ForMember(dest => dest.photoUrl, opt => opt.MapFrom(src => src.Photos.FirstOrDefault(x => x.isMain).Url));
             CreateMap<ProfileDto, ProfileUser>();
-            
+            CreateMap<Photo, PhotoDto>().ReverseMap();
             CreateMap<ProfileUser, CreateProfileDto>().ReverseMap();
             CreateMap<ProfileUser, UpdateProfileDto>().ReverseMap();
 

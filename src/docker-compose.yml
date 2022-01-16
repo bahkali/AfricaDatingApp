@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  authservice.api:
+    image: ${DOCKER_REGISTRY-}authserviceapi
+    build:
+      context: .
+      dockerfile: Services/AuthService.Api/Dockerfile
+
+  profileservice.api:
+    image: ${DOCKER_REGISTRY-}profileserviceapi
+    build:
+      context: .
+      dockerfile: Services/ProfileService.Api/Dockerfile
+

@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using AuthService.Api.Application.Services.SyncDataServices.Http;
 using AuthService.Api.Application.Dtos;
 using System;
+using AuthService.Api.Domain;
 
 namespace AuthService.Api.Controllers
 {
@@ -23,6 +24,7 @@ namespace AuthService.Api.Controllers
 
         public AuthManagementController(
             UserManager<AppUser> userManager,
+            DataContext dataContext,
             SignInManager<AppUser> signInManager,
             IUserDataClient userDataClient,
             TokenService tokenService)

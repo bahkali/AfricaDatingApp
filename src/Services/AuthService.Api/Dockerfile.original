@@ -7,10 +7,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["Services/AuthService.Api/AuthService.Api.csproj", "Services/AuthService.Api/"]
-RUN dotnet restore
+COPY ["AuthService.Api.csproj", "."]
+RUN dotnet restore "./AuthService.Api.csproj"
 COPY . .
-WORKDIR "/src/Services/AuthService.Api"
+WORKDIR "/src/."
 RUN dotnet build "AuthService.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
