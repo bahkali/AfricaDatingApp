@@ -17,3 +17,17 @@ services:
     ports:
       - "8001:80"
       - "443"
+
+  apigateway.ocelot:
+    container_name: apigateway.ocelot
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    depends_on:
+      - profileservice.api
+      - authservice.api
+    ports:
+      - "8010:80"
+      - "443"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
