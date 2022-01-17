@@ -1,0 +1,113 @@
+{
+  "Routes": [
+    //Auth API
+    // Register
+    {
+      "DownstreamPathTemplate": "/api/v1/AuthManagement/register",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "8000"
+        }
+      ],
+      "UpstreamPathTemplate": "/auth/register",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    //Login
+    {
+      "DownstreamPathTemplate": "/api/v1/AuthManagement/login",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "8000"
+        }
+      ],
+      "UpstreamPathTemplate": "/auth/login",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    //Token
+    {
+      "DownstreamPathTemplate": "/api/v1/AuthManagement/RefreshToken",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "8000"
+        }
+      ],
+      "UpstreamPathTemplate": "/auth/token",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    //Profile API
+    {
+      "DownstreamPathTemplate": "/api/v1/Profile",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "8001"
+        }
+      ],
+      "UpstreamPathTemplate": "/profile",
+      "UpstreamHttpMethod": [ "GET", "POST" ]
+    },
+    //Create profile
+    {
+      "DownstreamPathTemplate": "/api/v1/Profile/createProfile",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "8001"
+        }
+      ],
+      "UpstreamPathTemplate": "/profile/create",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    // Get profile by Id and Username
+    {
+      "DownstreamPathTemplate": "/api/v1/Profile/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "8001"
+        }
+      ],
+      "UpstreamPathTemplate": "/profile/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE", "PUT" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Profile/ByUsername/{username}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "8001"
+        }
+      ],
+      "UpstreamPathTemplate": "/profile/{username}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    //Photo API
+    {
+      "DownstreamPathTemplate": "/api/v1/Profile/Photos/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "8001"
+        }
+      ],
+      "UpstreamPathTemplate": "/Profile/Photos/{id}",
+      "UpstreamHttpMethod": [ "POST", "DELETE" ]
+    }
+    //Chat API
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5110"
+
+  }
+}

@@ -81,7 +81,9 @@ namespace AuthService.Api.Controllers
             if (!ModelState.IsValid) return BadRequest("Invalid Login request");
             var userLogin = await _userManager.Users.FirstOrDefaultAsync(x => x.Email == user.Email);
             if (user == null) return Unauthorized();
+
             var isCorrect = await _signInManager.CheckPasswordSignInAsync(userLogin, user.Password, false);
+
             if (!isCorrect.Succeeded) return BadRequest("Invalid login request");
 
             var userlogged = new AppUser() {Id= userLogin.Id , Email = userLogin.Email, UserName = userLogin.UserName };

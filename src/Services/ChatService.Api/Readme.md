@@ -8,3 +8,4 @@ this project include
 
 - SignalR
 - Docker
+- Redis db

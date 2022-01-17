@@ -4,13 +4,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProfileService.Api.Application.Persistence.Repositories.Interface;
-using ProfileService.Api.Controllers.Common;
 using ProfileService.Api.Domain;
 using ProfileService.Api.Domain.Entities;
 
 namespace ProfileService.Api.Controllers
 {
-    public class PhotosController : BaseApiController
+    [ApiController]
+    [Route("api/v1/Profile/[controller]")]
+    public class PhotosController : ControllerBase
     {
         private IUserAccessor _userAccessor;
         private readonly ProfileDataContext _context;
