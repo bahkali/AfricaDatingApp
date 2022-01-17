@@ -9,3 +9,11 @@ this project include
 - SignalR
 - Docker
 - Redis db
+
+## API
+AddMessage
+DeleteMessage
+GetConnection
+GetMessage
+GetMessageForUser
+RemoveConnection

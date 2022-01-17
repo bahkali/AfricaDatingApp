@@ -28,8 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\Dtos\Interface\" />
-    <Folder Include="Application\Persistence\" />
     <Folder Include="Domain\Common\" />
   </ItemGroup>
 

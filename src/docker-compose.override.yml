@@ -9,7 +9,6 @@ services:
     ports:
       - "8000:80"
       - "443"
-
   profileservice.api:
     container_name: profileservice.api
     environment:
@@ -17,7 +16,6 @@ services:
     ports:
       - "8001:80"
       - "443"
-
   apigateway.ocelot:
     container_name: apigateway.ocelot
     environment:
