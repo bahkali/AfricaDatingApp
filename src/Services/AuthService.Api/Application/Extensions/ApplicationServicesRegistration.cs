@@ -12,9 +12,12 @@ namespace AuthService.Api.Application.Extensions
     {
         public static IServiceCollection ConfigureApplicationServices(this IServiceCollection services, IConfiguration config)
         {
-            services.AddDbContext<DataContext>(opt =>
-            {
-                opt.UseSqlite(config.GetConnectionString("DefaultConnection"));
+            //services.AddDbContext<DataContext>(opt =>
+            //{
+            //    opt.UseSqlite(config.GetConnectionString("DefaultConnection"));
+            //});
+            services.AddDbContext<DataContext>(opt => {
+                opt.UseSqlServer(config.GetConnectionString("DefaultConnection"));
             });
             services.AddHttpClient<IUserDataClient, HttpUserDataClient>();
             services.ConfigureIdentityServices(config);
