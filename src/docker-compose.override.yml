@@ -1,11 +1,23 @@
 version: '3.4'
 
 services:
+  authServicedb:
+    container_name: authServicedb
+    environment:
+        SA_PASSWORD: "Jerico05"
+        ACCEPT_EULA: "Y"
+        MSSQL_PID: Express
+    restart: always
+    ports:
+      - "1434:1433" 
+
   authservice.api:
     container_name: authservice.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "ProfileServiceEndPoint=http://profileservice.api/api/v1/profile/createProfile"
+    depends_on:
+      - authServicedb
     ports:
       - "8000:80"
       - "443"

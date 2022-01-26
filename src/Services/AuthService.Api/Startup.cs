@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using AuthService.Api.Application.Extensions;
+using AuthService.Api.Domain;
 
 namespace AuthService.Api
 {
@@ -45,7 +46,7 @@ namespace AuthService.Api
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AuthService.Api v1"));
             }
-
+            PrepDB.PrepPopulation(app);
             app.UseHttpsRedirection();
 
             app.UseRouting();
