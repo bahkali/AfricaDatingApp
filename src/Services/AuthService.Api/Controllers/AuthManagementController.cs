@@ -12,6 +12,10 @@ using AuthService.Api.Application.Services.SyncDataServices.Http;
 using AuthService.Api.Application.Dtos;
 using System;
 using AuthService.Api.Domain;
+using Microsoft.Extensions.Configuration;
+using System.Net.Http;
+using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace AuthService.Api.Controllers
 {
@@ -21,10 +25,13 @@ namespace AuthService.Api.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly TokenService _tokenService;
+        private readonly IConfiguration _config;
+        private readonly HttpClient _httpClient;
 
         public AuthManagementController(
             UserManager<AppUser> userManager,
             DataContext dataContext,
+            IConfiguration config,
             SignInManager<AppUser> signInManager,
             IUserDataClient userDataClient,
             TokenService tokenService)
@@ -33,6 +40,11 @@ namespace AuthService.Api.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
             _tokenService = tokenService;
+            _config = config;
+            _httpClient = new HttpClient
+            {
+                BaseAddress = new System.Uri("https://graph.facebook.com")
+            };
         }
 
         // Register User
@@ -80,7 +92,7 @@ namespace AuthService.Api.Controllers
         {
             if (!ModelState.IsValid) return BadRequest("Invalid Login request");
             var userLogin = await _userManager.Users.FirstOrDefaultAsync(x => x.Email == user.Email);
-            if (user == null) return Unauthorized();
+            if (userLogin == null) return Unauthorized();
 
             var isCorrect = await _signInManager.CheckPasswordSignInAsync(userLogin, user.Password, false);
 
@@ -103,5 +115,52 @@ namespace AuthService.Api.Controllers
 
             return Ok(result);
         }
+
+        [HttpPost("fbLogin")]
+        public async Task<ActionResult> FacebookLogin(string accessToken)
+        {
+            // check the access token
+            var fbVerifyKeys = _config["Favebook:AppId"] + "|" + _config["Facebook:AppSecret"];
+            var verifyToken = await _httpClient.GetAsync($"debug_token?input_token={accessToken}&access_token={fbVerifyKeys}");
+            if(!verifyToken.IsSuccessStatusCode) return Unauthorized();
+
+            var fbUrl = $"me?access_token={accessToken}&fields=name,email";
+            var response = await _httpClient.GetAsync(fbUrl);
+            if(!response.IsSuccessStatusCode) return Unauthorized();
+
+            var content = await response.Content.ReadAsStringAsync();
+            var fbInfo = JsonConvert.DeserializeObject<dynamic>(content);
+
+            
+            var email = (string)fbInfo.name;
+            var userExist = await _userManager.Users.FirstOrDefaultAsync(x => x.Email == email);
+
+            if(userExist != null){
+                var userlogged = new AppUser() {Id= userExist.Id , Email = userExist.Email, UserName = userExist.UserName };
+                var Token = await _tokenService.CreateToken(userlogged);
+                return Ok(Token);
+            }
+
+            var newUser = new AppUser() 
+            { 
+                Email = (string)fbInfo.email, 
+                UserName = (string)fbInfo.id
+            };
+
+            var isCreated = await _userManager.CreateAsync(newUser);
+            if (!isCreated.Succeeded)
+            {
+                return BadRequest(new UserRegistrationResponseDto()
+                {
+                     Errors = isCreated.Errors.Select(x => x.Description).ToList(),
+                     Success = false
+                 });
+            }
+            // generate token using the tokenservice 
+            var jwtToken = await _tokenService.CreateToken(newUser);
+
+            return Ok(jwtToken);
+        }
+    
     }
 }
